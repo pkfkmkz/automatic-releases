@@ -1,0 +1,24 @@
+name: "tagged-release"
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  tagged-release:
+    name: "tagged release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: "build & test"
+        run: |
+          echo "done!"
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.TOKEN }}"
+          prerelease: false
+          files: |
+            LICENSE.txt
+            *.jar
